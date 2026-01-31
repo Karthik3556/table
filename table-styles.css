@@ -1,0 +1,271 @@
+/* ============================================
+   MODERN & DYNAMIC VIBRANT THEME
+   ============================================ */
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #FF0080 0%, #7928CA 100%);
+    --secondary-gradient: linear-gradient(135deg, #00DFD8 0%, #007CF0 100%);
+    --accent-gradient: linear-gradient(135deg, #FF4D4D 0%, #F9CB28 100%);
+    --bg-dark: #000;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-white: #ffffff;
+    --text-muted: #a0a0a0;
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-white);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #000428, #004e92, #1a0a2e, #2d0b00);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+/* Background Glowing Orbs */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: float 10s ease-in-out infinite;
+}
+
+body::before {
+    background: #FF0080;
+    top: 10%;
+    left: 10%;
+}
+
+body::after {
+    background: #007CF0;
+    bottom: 10%;
+    right: 10%;
+    animation-delay: -5s;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 1000px;
+    perspective: 1000px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+caption {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 128, 0.3));
+}
+
+thead th {
+    padding: 1.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--glass-border);
+}
+
+tbody th {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent);
+    color: var(--text-white);
+    font-weight: 700;
+    padding: 1.5rem;
+    border-radius: 15px;
+    transition: var(--transition);
+}
+
+td {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dynamic Hover Effects */
+td:not([rowspan]):hover,
+tbody th:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateZ(20px) scale(1.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+td::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+td:hover::after {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+/* Specific Gradient Coding for Subjects */
+td:contains('Java'),
+td:contains('Python') {
+    color: #00DFD8;
+}
+
+td:contains('Programming') {
+    color: #F9CB28;
+}
+
+td:contains('DSA') {
+    color: #FF0080;
+}
+
+/* Lunch Break - The Vertical Pillar */
+td[rowspan] {
+    background: var(--primary-gradient);
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    border: none;
+    box-shadow: 0 0 30px rgba(121, 40, 202, 0.4);
+}
+
+/* Front End Project Highlighting */
+td[colspan] {
+    background: var(--secondary-gradient);
+    color: white;
+    font-weight: 800;
+}
+
+/* Footer Section */
+tfoot td {
+    padding: 2rem;
+    font-weight: 700;
+    color: transparent;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Scrollbar Style */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-gradient);
+    border-radius: 5px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    table {
+        border-spacing: 5px;
+        padding: 10px;
+    }
+
+    caption {
+        font-size: 1.5rem;
+    }
+
+    td,
+    th {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
